@@ -11,13 +11,13 @@ client.connect();
 const hauptspeise = client.db("Rezepte").collection("Hauptspeise");
 
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
   res.send({
     message: 'Welcome to the API'
   });
 });
 
-app.get('/hauptspeise/random/:amount', (req, res) => {
+router.get('/hauptspeise/random/:amount', (req, res) => {
   const amount = parseInt(req.params.amount);
   hauptspeise.aggregate([{ $sample: { size: amount } }]).toArray((err, result) => {
     if (err) {
@@ -28,7 +28,7 @@ app.get('/hauptspeise/random/:amount', (req, res) => {
   });
 });
 
-app.get('/hauptspeise/random', (req, res) => {
+router.get('/hauptspeise/random', (req, res) => {
   hauptspeise.aggregate([{ $sample: { size: 1 } }]).toArray((err, result) => {
     if (err) {
       res.send(err);
@@ -38,7 +38,7 @@ app.get('/hauptspeise/random', (req, res) => {
   });
 });
 
-app.get('/rezept/id/:recipeid', (req, res) => {
+router.get('/rezept/id/:recipeid', (req, res) => {
   const id = parseInt(req.params.recipeid);
   hauptspeise.find({"_id": id}).toArray((err, result) => {
     if (err) {
