@@ -1,6 +1,16 @@
 {
+  "name": "node-cookify",
+  "description": "",
+  "devDependencies": {},
+  "scripts": {
+    "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
+    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src"
+  },
   "dependencies": {
     "express": "^4.17.1",
-    "mongodb": "^4.1.4"
-  }
+    "mongodb": "^4.1.4",
+    "netlify-lambda": "^2.0.15",
+    "serverless-http": "^2.7.0"
+  },
+  "keywords": []
 }
