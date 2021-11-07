@@ -4,7 +4,11 @@ const serverless = require('serverless-http');
 const app = express();
 const router = express.Router();
 
-const uri = "mongodb+srv://netlify:W8pWilx29fqTrSQt@cluster0.q42oh.mongodb.net";
+const user = process.env.MONGO_USER;
+const password = process.env.MONGO_PASSWORD;
+const host = process.env.MONGO_HOST;
+
+const uri = "mongodb+srv://" + user +  ":" + password + "@" + host;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect();
 
